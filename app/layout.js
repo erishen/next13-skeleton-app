@@ -20,7 +20,6 @@ export default function RootLayout({ children }) {
           <div className='page'>
             <Header />
             <div className='container'>
-              <Left />
               {children}
             </div>
             <Footer />

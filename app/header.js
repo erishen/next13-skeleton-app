@@ -1,11 +1,12 @@
 import '@/styles/header.scss'
 import Link from 'next/link'
-import { menus } from '@/utils/constant'
+import { home, menus } from '@/utils/constant'
 
 export default function Header() {
     return (
       <header>
         <nav>
+          <Link href={home?.href} className='link' key={'menu'}>{home?.text}</Link>
           {menus.map((item, index)=>{
             const { href, text } = item
             return (
