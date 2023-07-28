@@ -9,7 +9,6 @@ const Test = styled.div`
 const TestComponent = ({ children }) => {
     return (
         <Test>
-            <div>erishen-test</div>
             {children}
         </Test>
     )
