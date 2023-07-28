@@ -1,13 +1,11 @@
 header {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    border: 1px solid gray;
 
     nav {
         font-size: 30px;

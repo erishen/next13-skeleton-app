@@ -1,0 +1,16 @@
+.left {
+    width: 200px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid black;
+    font-size: 30px;
+    overflow: hidden;
+
+    .link {
+        color: green;
+        padding: 10px;
+    }
+}

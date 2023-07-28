@@ -1,8 +1,9 @@
-import '@/styles/globals.scss'
+import '@/styles/layout.scss'
 import { Inter } from 'next/font/google'
 import StyledComponentsRegistry from '@/lib/registry'
 import Header from './header'
 import Footer from './footer'
+import Left from './left'
  
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,11 +17,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <Header />
-          <div className='container'>
-            {children}
+          <div className='page'>
+            <Header />
+            <div className='container'>
+              <Left />
+              {children}
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </StyledComponentsRegistry>
       </body>
     </html>
