@@ -5,7 +5,12 @@ footer {
     width: 100%;
     height: 100px;
 
-    div {
+    .wrapper {
         font-size: 30px;
+
+        .link {
+            color: blue;
+            padding: 10px;
+        }
     }
 }
