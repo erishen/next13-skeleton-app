@@ -31,15 +31,15 @@ const getSubMenu1 = (subIndex) => {
 const getSubMenu2 = (subIndex) => {
     switch(subIndex){
         case 1:
-            return '基础'
+            return subIndex
         case 2:
-            return '计算'
+            return subIndex
         case 3: 
-            return '阅读'
+            return subIndex
         case 4: 
-            return '写作'
+            return subIndex
         case 5:
-            return '心得'
+            return subIndex
     }
 }
 
@@ -47,15 +47,15 @@ const getSubMenu2 = (subIndex) => {
 const getSubMenu3 = (subIndex) => {
     switch(subIndex){
         case 1:
-            return '古诗'
+            return subIndex
         case 2:
-            return '基础'
+            return subIndex
         case 3: 
-            return '阅读'
+            return subIndex
         case 4: 
-            return '写作'
+            return subIndex
         case 5:
-            return '心得'
+            return subIndex
     }
 }
 
@@ -63,31 +63,30 @@ const getSubMenu3 = (subIndex) => {
 const getSubMenu4 = (subIndex) => {
     switch(subIndex){
         case 1:
-            return '古诗'
+            return subIndex
         case 2:
-            return '基础'
+            return subIndex
         case 3: 
-            return '阅读'
+            return subIndex
         case 4: 
-            return '写作'
+            return subIndex
         case 5:
-            return '心得'
+            return subIndex
     }
 }
-
 
 const getSubMenu5 = (subIndex) => {
     switch(subIndex){
         case 1:
-            return '古诗'
+            return subIndex
         case 2:
-            return '基础'
+            return subIndex
         case 3: 
-            return '阅读'
+            return subIndex
         case 4: 
-            return '写作'
+            return subIndex
         case 5:
-            return '心得'
+            return subIndex
     }
 }
 
@@ -96,14 +95,19 @@ const getSubMenuText = (index, subIndex)=>{
     switch(index){
         case 1:
             subText = getSubMenu1(subIndex)
+            break
         case 2:
             subText = getSubMenu2(subIndex)
+            break
         case 3: 
             subText = getSubMenu3(subIndex)
+            break
         case 4: 
             subText = getSubMenu4(subIndex)
+            break
         case 5:
             subText = getSubMenu5(subIndex)
+            break
     }
     return getMenuText(index) + ' - ' + subText
 }
