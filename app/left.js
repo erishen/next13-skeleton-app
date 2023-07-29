@@ -7,9 +7,14 @@ const createMenus = ()=>{
     <div className='menu-left'>
       {menus.map((item, index)=>{
           const { href, text } = item
-          return (
-            <Link href={href} className='link' key={'menu' + index}>{text}</Link>
-          )
+
+          if(text !== ''){
+            return (
+              <Link href={href} className='link' key={'menu' + index}>{text}</Link>
+            )
+          } else {
+            return null
+          }
       })}
     </div>
   )
@@ -23,9 +28,24 @@ const createSubMenus = (subId)=>{
       <div className='menu-left'>
         {subMenus[subId - 1].map((item, index)=>{
           const { href, text } = item
-          return (
-            <Link href={href} className='link' key={'menu' + index}>{text}</Link>
-          )
+
+          let flag = false
+          if(text !== ''){
+            if(text.indexOf(' - ') !== -1){
+              const textArr = text.split(' - ')
+              if(textArr?.[1] !== ''){
+                flag = true
+              }
+            }
+          }
+
+          if(flag){
+            return (
+              <Link href={href} className='link' key={'menu' + index}>{text}</Link>
+            )
+          } else {
+            return null
+          }
         })}
       </div>
     )

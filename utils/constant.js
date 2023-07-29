@@ -8,7 +8,7 @@ const getMenuText = (index)=>{
         case 1:
             return '股票'
         case 2:
-            return ''
+            return '经济'
         case 3: 
             return ''
         case 4: 
@@ -33,6 +33,11 @@ const getSubMenu = (index, subIndex) => {
                 return '港股卡片'
             case 6:
                 return '美股卡片'
+        }
+    } else if(index === 2){
+        switch(subIndex){
+            case 1:
+                return '中国'
         }
     }
     return ''
@@ -72,18 +77,29 @@ const menuLen = 5
 const subMenuLen = 6
 const contentsLen = 20
 
-for(let i = 0; i < menuLen; i++){
+// 手动添加 stock 路由
+menusPri.push({
+    href: '/stock/1',
+    text: getMenuText(1)
+})
+
+subMenusPri[0] = []
+for(let j = 0; j < subMenuLen; j++){
+    subIndex = j + 1
+    subMenusPri[0].push({
+        href: '/stock/1-' + subIndex,
+        text: getSubMenuText(1, subIndex)
+    })
+}
+
+// menu
+for(let i = 1; i < menuLen; i++){
     index = i + 1
     menusPri.push({
         href: '/menu/' + index,
         text: getMenuText(index)
     })
-
-    footersPri.push({
-        href: '/footer/' + index,
-        text: 'footer' + index
-    })
-
+    
     subMenusPri[i] = []
     for(let j = 0; j < subMenuLen; j++){
         subIndex = j + 1
@@ -94,6 +110,15 @@ for(let i = 0; i < menuLen; i++){
     }
 }
 
+// footer
+for(let i = 0; i < menuLen; i++){
+    footersPri.push({
+        href: '/footer/' + index,
+        text: 'footer' + index
+    })
+}
+
+// content
 for(let i = 0; i < contentsLen; i++){
     index = i + 1
     contentsPri.push({
