@@ -1,29 +1,28 @@
 import '@/styles/page.scss'
 import Image from 'next/image'
-import Stock, { StockHead } from '@/components/Stock'
+import Stock, { StockHead, StockCard } from '@/components/Stock'
 import Left from '@/app/left'
 import { handleMenuParams } from '@/utils/common'
 
-const getData = async (params)=>{
-  const { id = '' } = params
-  const { preId, subId } = handleMenuParams(id)
-
-  console.log('getData', id, preId, subId)
+const getData = async (preId, subId )=>{
+  console.log('getData', preId, subId)
 
   let market = 'CN'
   let type = 'sh_sz'
   let page = 1
-  let size = 1000
+  let size = 100
   let order = 'desc'
   let orderby = 'percent'
 
   if(preId === 1){
     switch(subId){
       case 2:
+      case 5:
         market = 'HK'
         type = 'hk'
         break
       case 3:
+      case 6:
         market = 'US'
         type = 'us'
         break
@@ -47,25 +46,31 @@ const getData = async (params)=>{
 
 export default async function Page({ params }) {
   console.log('menu_page_params', params)
-  const { data } = await getData(params)
+  const { id = '' } = params
+  const { preId = 0, subId = 0 } = handleMenuParams(id)
+
+  const { data } = await getData(preId, subId)
   const { list } = data
   // console.log('list', list)
+
+  const isDisplayCardFlag = (subId < 4) ? false : true
 
   return (
     <>
       <Left params={params} />
-      <div className='content'>
-        <StockHead params={params} />
+      <div className='page-content'>
+        {!isDisplayCardFlag && <StockHead params={params} />}
         {
           list.map((item, index)=>{
-            if(index === 0)
-              console.log('item', item)
+            // if(index === 0)
+            //   console.log('item', item)
 
-            const { name, symbol, current, percent } = item
             return (
-              <div key={'item' + index}>
-                <Stock params={params} index={index} item={item} />
-              </div>
+              <>
+                {!isDisplayCardFlag ? 
+                  <Stock key={'item' + index} params={params} index={index} item={item} /> : 
+                  <StockCard key={'item' + index} params={params} index={index} item={item} />}
+              </>
             )
           })
         }

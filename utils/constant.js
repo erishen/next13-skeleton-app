@@ -28,9 +28,11 @@ const getSubMenu = (index, subIndex) => {
             case 3: 
                 return '美股'
             case 4: 
-                return subIndex
+                return '沪深卡片'
             case 5:
-                return subIndex
+                return '港股卡片'
+            case 6:
+                return '美股卡片'
         }
     }
     return ''
@@ -66,7 +68,11 @@ const contentsPri = []
 let index = 0
 let subIndex = 0
 
-for(let i = 0; i < 5; i++){
+const menuLen = 5
+const subMenuLen = 6
+const contentsLen = 20
+
+for(let i = 0; i < menuLen; i++){
     index = i + 1
     menusPri.push({
         href: '/menu/' + index,
@@ -79,7 +85,7 @@ for(let i = 0; i < 5; i++){
     })
 
     subMenusPri[i] = []
-    for(let j = 0; j < 5; j++){
+    for(let j = 0; j < subMenuLen; j++){
         subIndex = j + 1
         subMenusPri[i].push({
             href: '/menu/' + index + '-' + subIndex,
@@ -88,7 +94,7 @@ for(let i = 0; i < 5; i++){
     }
 }
 
-for(let i = 0; i < 100; i++){
+for(let i = 0; i < contentsLen; i++){
     index = i + 1
     contentsPri.push({
         tag: 'p',
@@ -98,11 +104,12 @@ for(let i = 0; i < 100; i++){
 
 const colorsPri = [
     'white',
-    'green',
-    'blue',
+    'deeppink',
+    'burlywood',
     'red',
     'pink',
-    'orange'
+    'orange',
+    'orangered'
 ]
 
 export const home = homePri

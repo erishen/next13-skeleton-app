@@ -12,7 +12,7 @@ export default function Page({ params }) {
   return (
     <>
       <Left params={params} />
-      <div className='content'>
+      <div className='page-content'>
         <Test>Hello World</Test>
 
         {contents.map((item, index)=>{

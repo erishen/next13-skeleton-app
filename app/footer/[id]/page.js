@@ -7,7 +7,7 @@ export default function Page({ params }) {
   return (
     <>
       <Left />
-      <div className='content'>
+      <div className='page-content'>
         <Test>Footer Page {params?.id}</Test>
       </div>
     </>

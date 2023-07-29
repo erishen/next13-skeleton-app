@@ -4,7 +4,7 @@ import { menus, subMenus } from '@/utils/constant'
 
 const createMenus = ()=>{
   return (
-    <div className='left'>
+    <div className='menu-left'>
       {menus.map((item, index)=>{
           const { href, text } = item
           return (
@@ -20,7 +20,7 @@ const createSubMenus = (subId)=>{
 
   if(subId > 0){
     return (
-      <div className='left'>
+      <div className='menu-left'>
         {subMenus[subId - 1].map((item, index)=>{
           const { href, text } = item
           return (
