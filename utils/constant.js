@@ -98,9 +98,9 @@ for(let i = 0; i < 100; i++){
 
 const colorsPri = [
     'white',
-    'red',
     'green',
     'blue',
+    'red',
     'pink',
     'orange'
 ]

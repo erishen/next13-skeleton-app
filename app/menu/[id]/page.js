@@ -13,7 +13,7 @@ const getData = async (params)=>{
   let market = 'CN'
   let type = 'sh_sz'
   let page = 1
-  let size = 30
+  let size = 1000
   let order = 'desc'
   let orderby = 'percent'
 
