@@ -5,13 +5,15 @@ header {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid gray;
+    // border: 1px solid gray;
+    background-color: orangered;
 
     nav {
+        margin-left: 20px;
         font-size: 30px;
 
         .link {
-            color: blue;
+            color: white;
             padding: 10px;
         }
     }

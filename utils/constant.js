@@ -1,121 +1,63 @@
+const homePri = {
+    href: '/',
+    text: '首页'
+}
+
 const getMenuText = (index)=>{
     switch(index){
         case 1:
-            return '语文'
+            return '股票'
         case 2:
-            return '数学'
+            return ''
         case 3: 
-            return '英语'
+            return ''
         case 4: 
-            return '地理'
+            return ''
         case 5:
-            return '历史'
+            return ''
     }
 }
 
-const getSubMenu1 = (subIndex) => {
-    switch(subIndex){
-        case 1:
-            return '古诗'
-        case 2:
-            return '基础'
-        case 3: 
-            return '阅读'
-        case 4: 
-            return '写作'
-        case 5:
-            return '心得'
+const getSubMenu = (index, subIndex) => {
+    if(index === 1){
+        switch(subIndex){
+            case 1:
+                return '沪深'
+            case 2:
+                return '港股'
+            case 3: 
+                return '美股'
+            case 4: 
+                return subIndex
+            case 5:
+                return subIndex
+        }
     }
-}
-
-const getSubMenu2 = (subIndex) => {
-    switch(subIndex){
-        case 1:
-            return subIndex
-        case 2:
-            return subIndex
-        case 3: 
-            return subIndex
-        case 4: 
-            return subIndex
-        case 5:
-            return subIndex
-    }
-}
-
-
-const getSubMenu3 = (subIndex) => {
-    switch(subIndex){
-        case 1:
-            return subIndex
-        case 2:
-            return subIndex
-        case 3: 
-            return subIndex
-        case 4: 
-            return subIndex
-        case 5:
-            return subIndex
-    }
-}
-
-
-const getSubMenu4 = (subIndex) => {
-    switch(subIndex){
-        case 1:
-            return subIndex
-        case 2:
-            return subIndex
-        case 3: 
-            return subIndex
-        case 4: 
-            return subIndex
-        case 5:
-            return subIndex
-    }
-}
-
-const getSubMenu5 = (subIndex) => {
-    switch(subIndex){
-        case 1:
-            return subIndex
-        case 2:
-            return subIndex
-        case 3: 
-            return subIndex
-        case 4: 
-            return subIndex
-        case 5:
-            return subIndex
-    }
+    return ''
 }
 
 const getSubMenuText = (index, subIndex)=>{
     let subText = ''
     switch(index){
         case 1:
-            subText = getSubMenu1(subIndex)
+            subText = getSubMenu(index, subIndex)
             break
         case 2:
-            subText = getSubMenu2(subIndex)
+            subText = getSubMenu(index, subIndex)
             break
         case 3: 
-            subText = getSubMenu3(subIndex)
+            subText = getSubMenu(index, subIndex)
             break
         case 4: 
-            subText = getSubMenu4(subIndex)
+            subText = getSubMenu(index, subIndex)
             break
         case 5:
-            subText = getSubMenu5(subIndex)
+            subText = getSubMenu(index, subIndex)
             break
     }
     return getMenuText(index) + ' - ' + subText
 }
 
-const homePri = {
-    href: '/',
-    text: '学生'
-}
 const menusPri = []
 const subMenusPri = {}
 const footersPri = []
@@ -154,8 +96,18 @@ for(let i = 0; i < 100; i++){
     })
 }
 
+const colorsPri = [
+    'white',
+    'red',
+    'green',
+    'blue',
+    'pink',
+    'orange'
+]
+
 export const home = homePri
 export const menus = menusPri
 export const subMenus = subMenusPri
 export const footers = footersPri
 export const contents = contentsPri
+export const colors = colorsPri

@@ -5,12 +5,13 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    border: 1px solid black;
     font-size: 30px;
     overflow: hidden;
+    background-color: lightgray;
+    border-radius: 8px;
 
     .link {
-        color: green;
+        color: orangered;
         padding: 10px;
     }
 }

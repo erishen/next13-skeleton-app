@@ -1,11 +1,38 @@
 import '@/styles/page.scss'
 import Image from 'next/image'
-import Test from '@/components/Test'
 import Stock, { StockHead } from '@/components/Stock'
 import Left from '@/app/left'
+import { handleMenuParams } from '@/utils/common'
 
-const getData = async ()=>{
-  const url = `https://xueqiu.com/service/v5/stock/screener/quote/list?page=1&size=30&order=desc&orderby=percent&order_by=percent&market=CN&type=sh_sz&_=1644586651770` 
+const getData = async (params)=>{
+  const { id = '' } = params
+  const { preId, subId } = handleMenuParams(id)
+
+  console.log('getData', id, preId, subId)
+
+  let market = 'CN'
+  let type = 'sh_sz'
+  let page = 1
+  let size = 30
+  let order = 'desc'
+  let orderby = 'percent'
+
+  if(preId === 1){
+    switch(subId){
+      case 2:
+        market = 'HK'
+        type = 'hk'
+        break
+      case 3:
+        market = 'US'
+        type = 'us'
+        break
+    }
+  }
+
+  const url = `https://xueqiu.com/service/v5/stock/screener/quote/list?page=${page}&size=${size}&order=${order}&order_by=${orderby}&market=${market}&type=${type}&_=1644586651770` 
+  console.log('url', url)
+
   const res = await fetch(url, {
     next: { revalidate: 10 } 
   })
@@ -20,7 +47,7 @@ const getData = async ()=>{
 
 export default async function Page({ params }) {
   console.log('menu_page_params', params)
-  const { data } = await getData()
+  const { data } = await getData(params)
   const { list } = data
   // console.log('list', list)
 
@@ -28,7 +55,6 @@ export default async function Page({ params }) {
     <>
       <Left params={params} />
       <div className='content'>
-        <Test>Menu Page {params?.id}</Test>
         <StockHead params={params} />
         {
           list.map((item, index)=>{

@@ -7,10 +7,15 @@ export default function Footer() {
       <footer>
         <div className='wrapper'>
           {footers.map((item, index)=>{
-            const { href, text } = item
-            return (
-              <Link href={href} className='link' key={'footer' + index}>{text}</Link>
-            )
+            const { href, text = '' } = item
+
+            if(text !== ''){
+              return (
+                <Link href={href} className='link' key={'footer' + index}>{text}</Link>
+              )
+            } else {
+              return null
+            }
           })}
         </div>
       </footer>

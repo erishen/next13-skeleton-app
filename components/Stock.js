@@ -1,16 +1,18 @@
 'use client'
 
 import styled from 'styled-components'
+import { handleMenuParams } from '@/utils/common'
+import { colors } from '@/utils/constant'
 
 const Stock = styled.div`
     font-size: ${props => props.head ? '25px' : '20px'};
     font-weight: ${props => props.head ? 'bold' : 'normal'};;
-    margin-top: 5px;
+    margin-bottom: 5px;
     color: black;
     width: 100%;
     display: flex;
     flex-direction: row;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     background-color: ${props => props.backgroundColor};
 
     .col {
@@ -37,20 +39,21 @@ const Stock = styled.div`
     }
 `
 
-const colorArr = [
-    'white',
-    'red',
-    'green',
-    'blue',
-    'pink',
-    'orange'
-]
-
 const getSubBackgroundColor = (preId, subId = 0)=>{
-    if(subId === 0){
-        return colorArr[preId]
+    const colorsLen = colors?.length || 0
+
+    if(colorsLen > 0){
+        if(subId === 0){
+            return colors[preId]
+        } else {    
+            if(colorsLen >= subId){
+                return colors[colors?.length - subId]
+            } else {
+                return colors[0]
+            }
+        }
     } else {
-        return colorArr[colorArr.length - subId]
+        return 'white'
     }
 }
 
@@ -61,18 +64,8 @@ const getBackgroundColor = (params, index = -1)=>{
         return 'white'
     }
 
-    let preId = 0
-    let subId = 0
-
-    if(id.indexOf('-') !== -1){
-        const idArr = id.split('-')
-        preId = parseInt(idArr?.[0], 10)
-        subId = parseInt(idArr?.[1], 10)
-    } else {
-        preId = parseInt(id, 10)
-    }
-
-    console.log('getBackgroundColor', params, preId, subId)
+    const { preId, subId } = handleMenuParams(id)
+    // console.log('getBackgroundColor', params, preId, subId)
 
     if(index !== -1 && index % 2 === 0){
         return 'white'

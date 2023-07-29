@@ -8,10 +8,15 @@ export default function Header() {
         <nav>
           <Link href={home?.href} className='link' key={'menu'}>{home?.text}</Link>
           {menus.map((item, index)=>{
-            const { href, text } = item
-            return (
-              <Link href={href} className='link' key={'menu' + index}>{text}</Link>
-            )
+            const { href, text = '' } = item
+
+            if(text !== ''){
+              return (
+                <Link href={href} className='link' key={'menu' + index}>{text}</Link>
+              )
+            } else {
+              return null
+            }
           })}
         </nav>
       </header>
