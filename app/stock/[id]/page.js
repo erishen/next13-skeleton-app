@@ -45,7 +45,6 @@ const getData = async (preId, subId )=>{
 }
 
 export default async function Page({ params }) {
-  console.log('menu_page_params', params)
   const { id = '' } = params
   const { preId = 0, subId = 0 } = handleMenuParams(id)
 

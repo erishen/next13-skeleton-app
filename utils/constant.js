@@ -75,9 +75,10 @@ let subIndex = 0
 
 const menuLen = 5
 const subMenuLen = 6
+const footerLen = 10
 const contentsLen = 20
 
-// 手动添加 stock 路由
+// 手动添加 stock
 menusPri.push({
     href: '/stock/1',
     text: getMenuText(1)
@@ -92,8 +93,23 @@ for(let j = 0; j < subMenuLen; j++){
     })
 }
 
+// 手动添加 economy
+menusPri.push({
+    href: '/economy/2',
+    text: getMenuText(2)
+})
+
+subMenusPri[1] = []
+for(let j = 0; j < subMenuLen; j++){
+    subIndex = j + 1
+    subMenusPri[1].push({
+        href: '/economy/2-' + subIndex,
+        text: getSubMenuText(2, subIndex)
+    })
+}
+
 // menu
-for(let i = 1; i < menuLen; i++){
+for(let i = 2; i < menuLen; i++){
     index = i + 1
     menusPri.push({
         href: '/menu/' + index,
@@ -111,7 +127,8 @@ for(let i = 1; i < menuLen; i++){
 }
 
 // footer
-for(let i = 0; i < menuLen; i++){
+for(let i = 0; i < footerLen; i++){
+    index = i + 1
     footersPri.push({
         href: '/footer/' + index,
         text: 'footer' + index
