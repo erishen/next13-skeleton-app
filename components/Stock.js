@@ -5,17 +5,17 @@ import { handleMenuParams } from '@/utils/common'
 import { colors } from '@/utils/constant'
 
 const StockDiv = styled.div`
-    font-size: ${props => props.head ? '25px' : '20px'};
-    font-weight: ${props => props.head ? 'bold' : 'normal'};;
+    font-size: ${props => props.$head ? '25px' : '20px'};
+    font-weight: ${props => props.$head ? 'bold' : 'normal'};;
     margin-bottom: 5px;
-    color: ${props => props.head ? 'white' : 'black'};
-    padding: ${props => props.head ? '10px' : '0'};
+    color: ${props => props.$head ? 'white' : 'black'};
+    padding: ${props => props.$head ? '10px' : '0'};
     width: 100%;
     display: flex;
     flex-direction: row;
     /* border: 1px solid gray; */
-    background-color: ${props => props.backgroundcolor};
-    border-radius: ${props => props.head ? '4px' : '0'};
+    background-color: ${props => props.$backgroundColor};
+    border-radius: ${props => props.$head ? '4px' : '0'};
 
     .col {
         width: 250px;
@@ -53,7 +53,7 @@ const StockCardDiv = styled.div`
     justify-content: flex-start;
     align-items: center;
     border: 1px solid gray;
-    background-color: ${props => props.backgroundcolor};
+    background-color: ${props => props.$backgroundColor};
     border-radius: 4px;
     float: left;
 
@@ -139,7 +139,7 @@ const Stock = ({ params, item, index }) => {
     const { name, symbol, current, percent, followers } = item
 
     return (
-        <StockDiv backgroundcolor={getBackgroundColor(params, index)}>
+        <StockDiv $backgroundColor={getBackgroundColor(params, index)}>
             <div className='col name'>{name}</div>
             <div className='col symbol'>{symbol}</div>
             <div className='col current'>{current}</div>
@@ -151,7 +151,7 @@ const Stock = ({ params, item, index }) => {
 
 export const StockHead = ({ params })=>{
     return (
-        <StockDiv backgroundcolor={getBackgroundColor(params)} head={true}>
+        <StockDiv $backgroundColor={getBackgroundColor(params)} $head={1}>
             <div className='col name'>{'名称'}</div>
             <div className='col symbol'>{'代码'}</div>
             <div className='col current'>{'当前价'}</div>
@@ -165,7 +165,7 @@ export const StockCard = ({ params, item, index }) => {
     const { name, symbol, current, percent, followers } = item
 
     return (
-        <StockCardDiv backgroundcolor={getBackgroundColor(params, index, true)}>
+        <StockCardDiv $backgroundColor={getBackgroundColor(params, index, true)}>
             <div className='col name'>{name}</div>
             <div className='col symbol'>{symbol}</div>
             <div className='col current'>

@@ -33,7 +33,7 @@ const getData = async (preId, subId )=>{
   console.log('url', url)
 
   const res = await fetch(url, {
-    next: { revalidate: 10 } 
+    // next: { revalidate: 10 } 
   })
   
   if (!res.ok) {
