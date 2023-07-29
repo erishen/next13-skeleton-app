@@ -1,6 +1,7 @@
 import '@/styles/page.scss'
 import Image from 'next/image'
 import Test from '@/components/Test'
+import Stock, { StockHead } from '@/components/Stock'
 import Left from '@/app/left'
 
 const getData = async ()=>{
@@ -28,6 +29,7 @@ export default async function Page({ params }) {
       <Left params={params} />
       <div className='content'>
         <Test>Menu Page {params?.id}</Test>
+        <StockHead params={params} />
         {
           list.map((item, index)=>{
             if(index === 0)
@@ -35,7 +37,9 @@ export default async function Page({ params }) {
 
             const { name, symbol, current, percent } = item
             return (
-              <div>{(index + 1) + '. ' + symbol + ' ' + name + ' ' + current + ' ' + percent}</div>
+              <div key={'item' + index}>
+                <Stock params={params} index={index} item={item} />
+              </div>
             )
           })
         }
