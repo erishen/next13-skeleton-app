@@ -10,6 +10,7 @@ const rapidKey = '281fd95da5mshb358a0378df34dcp1ad7cfjsn66ed289e84b7'
 const rapidHost = 'investing-financial-stocks.p.rapidapi.com'
 
 const juheGoldUrl = 'http://web.juhe.cn/finance/gold/shgold' 
+const juheFutureUrl = 'http://web.juhe.cn/finance/gold/shfuture'
 const juheGoldKey = '3bf37029149d29e6fa696a5ec882bfc9'
 
 const getData = async (preId, subId )=>{
@@ -18,18 +19,22 @@ const getData = async (preId, subId )=>{
 
   let url = rapidEconomyUrl
   let options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': rapidKey,
-      'X-RapidAPI-Host': rapidHost
-    }
+    method: 'GET'
   }
 
-  if(subId === 2){
-    url = juheGoldUrl + '?v=1&key=' + juheGoldKey
-    options = {
-      method: 'GET'
-    }
+  switch(subId){
+    case 1:
+      options.headers = {
+        'X-RapidAPI-Key': rapidKey,
+        'X-RapidAPI-Host': rapidHost
+      }
+      break
+    case 2:
+      url = juheGoldUrl + '?v=1&key=' + juheGoldKey
+      break
+    case 3:
+      url = juheFutureUrl + '?v=1&key=' + juheGoldKey
+      break
   }
 
   try {
@@ -57,8 +62,13 @@ export default async function Page({ params }) {
   let pageData = []
   const { data = [], result = [] } = await getData(preId, subId)
 
+  let isGoldFlag = false
+  if(subId === 2 || subId === 3){
+    isGoldFlag = true
+  }
+
   pageData = data
-  if(subId === 2){
+  if(isGoldFlag){
     const firstObj = result?.[0]
     Object.keys(firstObj).forEach((key, index)=>{
       pageData.push(firstObj?.[key])
@@ -69,13 +79,13 @@ export default async function Page({ params }) {
     <>
       <Left params={params} />
       <div className='page-content'>
-        {subId === 2 && <EconomyGoldHead key={'economy-gold-head'} params={params} />}
+        {isGoldFlag && <EconomyGoldHead key={'economy-gold-head'} params={params} />}
 
         {pageData.map((item, index)=>{
-          // if(index === 0)
-          //   console.log('item', item)
+          if(index === 0)
+            console.log('item', item)
 
-            if(subId === 2){
+            if(isGoldFlag){
               return (
                 <EconomyGold key={'economy-gold' + index} params={params} item={item} index={index} />
               )

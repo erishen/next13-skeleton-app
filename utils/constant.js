@@ -40,6 +40,8 @@ const getSubMenu = (index, subIndex) => {
                 return '财情'
             case 2:
                 return '黄金'
+            case 3:
+                return '期货'
         }
     }
     return ''

@@ -49,26 +49,71 @@ const EconomyDiv = styled.div`
         }
     }
 
-    .col {
-        width: 100px;
-        height: 50px;
+    .gold-wrapper {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: center;
+        width: 100%;
+
+        .col {
+            width: 100px;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .variety {
+            justify-content: center;
+        }
+
+        .totalvol {
+            width: 150px;
+        }
+
+        .time {
+            width: 250px;
+            justify-content: center;
+        }
     }
 
-    .variety {
-        justify-content: center;
-    }
+    .future-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
 
-    .totalvol {
-        width: 150px;
-    }
+        .col {
+            width: 90px;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
 
-    .time {
-        width: 250px;
-        justify-content: center;
+        .name {
+            width: 100px;
+            justify-content: center;
+        }
+
+        .change {
+            justify-content: center;
+        }
+        .buyvol {
+            justify-content: center;
+        }
+        .sellvol {
+            justify-content: center;
+        }
+
+        .time {
+            width: 250px;
+            justify-content: center;
+        }
     }
 `
 
@@ -103,44 +148,114 @@ const Economy = ({ params, item }) => {
 }
 
 export const EconomyGold = ({ params, item, index })=>{
-    const { variety, latestpri, openpri, maxpri, minpri, limit, yespri, totalvol, time } = item
+    const { id = '' } = params
+    const { preId, subId } = handleMenuParams(id)
 
     let backgroundColor = 'pink'
+    
+    if(subId === 3){
+        backgroundColor = 'orange'
+    }
+
     if(index % 2 === 0){
         backgroundColor = 'white'
     }
 
-    return (
-        <EconomyDiv $backgroundColor={backgroundColor}>
-            <div className='col variety'>{variety}</div>
-            <div className='col latestpri'>{latestpri}</div>
-            <div className='col openpri'>{openpri}</div>
-            <div className='col maxpri'>{maxpri}</div>
-            <div className='col minpri'>{minpri}</div>
-            <div className='col limit'>{limit}</div>
-            <div className='col yespri'>{yespri}</div>
-            <div className='col totalvol'>{totalvol}</div>
-            <div className='col time'>{time}</div>
-        </EconomyDiv>
-    )
+    if(subId === 2){
+        const { variety, latestpri, openpri, maxpri, minpri, limit, yespri, totalvol, time } = item
+
+        return (
+            <EconomyDiv $backgroundColor={backgroundColor}>
+                <div className='gold-wrapper'>
+                    <div className='col variety'>{variety}</div>
+                    <div className='col latestpri'>{latestpri}</div>
+                    <div className='col openpri'>{openpri}</div>
+                    <div className='col maxpri'>{maxpri}</div>
+                    <div className='col minpri'>{minpri}</div>
+                    <div className='col limit'>{limit}</div>
+                    <div className='col yespri'>{yespri}</div>
+                    <div className='col totalvol'>{totalvol}</div>
+                    <div className='col time'>{time}</div>
+                </div>
+            </EconomyDiv>
+        )
+    } else if(subId === 3){
+        const { name, latestpri, change, buypri, buyvol, sellpri, sellvol, tradvol, open, 
+            lastclear, maxpri, minpri, position, zengcang, time } = item
+        
+        return (
+            <EconomyDiv $backgroundColor={backgroundColor}>
+                <div className='future-wrapper'>
+                    <div className='col name'>{name}</div>
+                    <div className='col latestpri'>{latestpri}</div>
+                    <div className='col change'>{change}</div>
+                    <div className='col buypri'>{buypri}</div>
+                    <div className='col buyvol'>{buyvol}</div>
+                    <div className='col sellpri'>{sellpri}</div>
+                    <div className='col sellvol'>{sellvol}</div>
+                    <div className='col tradvol'>{tradvol}</div>
+                    {/*<div className='col open'>{open}</div>
+                    <div className='col lastclear'>{lastclear}</div>
+                    <div className='col zengcang'>{zengcang}</div>
+                    <div className='col maxpri'>{maxpri}</div>
+                    <div className='col minpri'>{minpri}</div>*/}
+                    <div className='col position'>{position}</div>
+                    <div className='col time'>{time}</div>
+                </div>
+            </EconomyDiv>
+        )
+    }
+
+    return null
 }
 
 export const EconomyGoldHead = ({ params })=>{
+    const { id = '' } = params
+    const { preId, subId } = handleMenuParams(id)
+
     const backgroundColor = 'black'
 
-    return (
-        <EconomyDiv $backgroundColor={backgroundColor} $head={1}>
-            <div className='col variety'>{'品种'}</div>
-            <div className='col latestpri'>{'最新价'}</div>
-            <div className='col openpri'>{'开盘价'}</div>
-            <div className='col maxpri'>{'最高价'}</div>
-            <div className='col minpri'>{'最低价'}</div>
-            <div className='col limit'>{'涨跌幅'}</div>
-            <div className='col yespri'>{'昨收价'}</div>
-            <div className='col totalvol'>{'总成交量'}</div>
-            <div className='col time'>{'更新时间'}</div>
-        </EconomyDiv>
-    )
+    if(subId === 2){
+        return (
+            <EconomyDiv $backgroundColor={backgroundColor} $head={1}>
+                <div className='gold-wrapper'>
+                    <div className='col variety'>{'品种'}</div>
+                    <div className='col latestpri'>{'最新价'}</div>
+                    <div className='col openpri'>{'开盘价'}</div>
+                    <div className='col maxpri'>{'最高价'}</div>
+                    <div className='col minpri'>{'最低价'}</div>
+                    <div className='col limit'>{'涨跌幅'}</div>
+                    <div className='col yespri'>{'昨收价'}</div>
+                    <div className='col totalvol'>{'总成交量'}</div>
+                    <div className='col time'>{'更新时间'}</div>
+                </div>
+            </EconomyDiv>
+        )
+    } else if(subId === 3){
+        return (
+            <EconomyDiv $backgroundColor={backgroundColor} $head={1}>
+                <div className='future-wrapper'>
+                    <div className='col name'>{'名称'}</div>
+                    <div className='col latestpri'>{'最新价'}</div>
+                    <div className='col change'>{'涨跌'}</div>
+                    <div className='col buypri'>{'买价'}</div>
+                    <div className='col buyvol'>{'买量'}</div>
+                    <div className='col sellpri'>{'卖价'}</div>
+                    <div className='col sellvol'>{'卖量'}</div>
+                    <div className='col tradvol'>{'成交量'}</div>
+                    {/*<div className='col open'>{'今开盘'}</div>
+                    <div className='col lastclear'>{'昨结算'}</div>
+                    <div className='col zengcang'>{'增仓'}</div>
+                    <div className='col maxpri'>{'最高价'}</div>
+                    <div className='col minpri'>{'最低价'}</div>*/}
+                    <div className='col position'>{'持仓量'}</div>
+                    <div className='col time'>{'更新时间'}</div>
+                </div>
+            </EconomyDiv>
+        )
+    }
+
+    return null
 }
 
 export default Economy
