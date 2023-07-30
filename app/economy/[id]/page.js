@@ -3,18 +3,32 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Left from '@/app/left'
 import { handleMenuParams } from '@/utils/common'
-import Economy from '@/components/Economy'
+import Economy, { EconomyGold, EconomyGoldHead } from '@/components/Economy'
+
+const rapidEconomyUrl = 'https://investing-financial-stocks.p.rapidapi.com/articles/economy?lang=en'
+const rapidKey = '281fd95da5mshb358a0378df34dcp1ad7cfjsn66ed289e84b7'
+const rapidHost = 'investing-financial-stocks.p.rapidapi.com'
+
+const juheGoldUrl = 'http://web.juhe.cn/finance/gold/shgold' 
+const juheGoldKey = '3bf37029149d29e6fa696a5ec882bfc9'
 
 const getData = async (preId, subId )=>{
   console.log('getData', preId, subId)
   let result = ''
 
-  const url = 'https://investing-financial-stocks.p.rapidapi.com/articles/economy?lang=en'
-  const options = {
+  let url = rapidEconomyUrl
+  let options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '281fd95da5mshb358a0378df34dcp1ad7cfjsn66ed289e84b7',
-      'X-RapidAPI-Host': 'investing-financial-stocks.p.rapidapi.com'
+      'X-RapidAPI-Key': rapidKey,
+      'X-RapidAPI-Host': rapidHost
+    }
+  }
+
+  if(subId === 2){
+    url = juheGoldUrl + '?v=1&key=' + juheGoldKey
+    options = {
+      method: 'GET'
     }
   }
 
@@ -40,19 +54,36 @@ export default async function Page({ params }) {
   const { id = '' } = params
   const { preId = 0, subId = 0 } = handleMenuParams(id)
 
-  const { data } = await getData(preId, subId)
+  let pageData = []
+  const { data = [], result = [] } = await getData(preId, subId)
+
+  pageData = data
+  if(subId === 2){
+    const firstObj = result?.[0]
+    Object.keys(firstObj).forEach((key, index)=>{
+      pageData.push(firstObj?.[key])
+    })
+  }
 
   return (
     <>
       <Left params={params} />
       <div className='page-content'>
-        {data.map((item, index)=>{
-          if(index === 0)
-            console.log('item', item)
+        {subId === 2 && <EconomyGoldHead key={'economy-gold-head'} params={params} />}
 
-          return (
-            <Economy key={'economy' + index} params={params} item={item} />
-          )
+        {pageData.map((item, index)=>{
+          // if(index === 0)
+          //   console.log('item', item)
+
+            if(subId === 2){
+              return (
+                <EconomyGold key={'economy-gold' + index} params={params} item={item} index={index} />
+              )
+            } else {
+              return (
+                <Economy key={'economy' + index} params={params} item={item} />
+              )
+            }
         })}
       </div>
     </>

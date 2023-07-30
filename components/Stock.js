@@ -6,16 +6,16 @@ import { colors } from '@/utils/constant'
 
 const StockDiv = styled.div`
     font-size: ${props => props.$head ? '25px' : '20px'};
-    font-weight: ${props => props.$head ? 'bold' : 'normal'};;
-    margin-bottom: 5px;
+    font-weight: ${props => props.$head ? 'bold' : 'normal'};
     color: ${props => props.$head ? 'white' : 'black'};
     padding: ${props => props.$head ? '10px' : '0'};
+    border-radius: ${props => props.$head ? '4px' : '0'};
+    margin-bottom: 5px;
     width: 100%;
     display: flex;
     flex-direction: row;
     /* border: 1px solid gray; */
     background-color: ${props => props.$backgroundColor};
-    border-radius: ${props => props.$head ? '4px' : '0'};
 
     .col {
         width: 250px;

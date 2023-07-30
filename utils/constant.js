@@ -37,7 +37,9 @@ const getSubMenu = (index, subIndex) => {
     } else if(index === 2){
         switch(subIndex){
             case 1:
-                return '中国'
+                return '财情'
+            case 2:
+                return '黄金'
         }
     }
     return ''
