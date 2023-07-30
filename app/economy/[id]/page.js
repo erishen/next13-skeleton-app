@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Left from '@/app/left'
 import { handleMenuParams } from '@/utils/common'
+import Economy from '@/components/Economy'
 
 const getData = async (preId, subId )=>{
   console.log('getData', preId, subId)
@@ -49,10 +50,8 @@ export default async function Page({ params }) {
           if(index === 0)
             console.log('item', item)
 
-          const { title, href } = item
-
           return (
-            <Link href={href} className='link' key={'menu' + index}>{title}</Link>
+            <Economy key={'economy' + index} params={params} item={item} />
           )
         })}
       </div>
