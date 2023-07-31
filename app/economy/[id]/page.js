@@ -13,6 +13,8 @@ const juheGoldUrl = 'http://web.juhe.cn/finance/gold/shgold'
 const juheFutureUrl = 'http://web.juhe.cn/finance/gold/shfuture'
 const juheGoldKey = '3bf37029149d29e6fa696a5ec882bfc9'
 
+export const revalidate = 3600 // revalidate every hour
+
 const getData = async (preId, subId )=>{
   console.log('getData', preId, subId)
   let result = ''

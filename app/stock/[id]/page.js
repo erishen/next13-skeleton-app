@@ -4,6 +4,8 @@ import Stock, { StockHead, StockCard } from '@/components/Stock'
 import Left from '@/app/left'
 import { handleMenuParams } from '@/utils/common'
 
+export const revalidate = 3600 // revalidate every hour
+
 const getData = async (preId, subId )=>{
   console.log('getData', preId, subId)
 

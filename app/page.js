@@ -5,7 +5,7 @@ import Test from '@/components/Test'
 // const Test = dynamic(()=>import('@/components/Test'), { ssr: true })
 import { contents } from '@/utils/constant'
 import Left from './left'
- 
+
 export default function Page({ params }) {
   console.log('page_params', params)
 
