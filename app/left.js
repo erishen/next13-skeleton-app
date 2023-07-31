@@ -73,11 +73,15 @@ export default function Left({ params }) {
       </>
     )
   } else if(id.indexOf('-') === -1){
-    return (
-      <>
-        {createSubMenus(parseInt(id, 10))}
-      </>
-    )
+    if(id.indexOf('%') === -1){
+      return (
+        <>
+          {createSubMenus(parseInt(id, 10))}
+        </>
+      )
+    } else {
+      return null
+    }
   } else {
     const idArr = id.split('-')
     const newId = parseInt(idArr?.[0], 10)

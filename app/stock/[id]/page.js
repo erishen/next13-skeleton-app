@@ -3,11 +3,32 @@ import Image from 'next/image'
 import Stock, { StockHead, StockCard } from '@/components/Stock'
 import Left from '@/app/left'
 import { handleMenuParams } from '@/utils/common'
+import { subMenus } from '@/utils/constant'
 
 export const revalidate = 3600 // revalidate every hour
 
-const getData = async (preId, subId )=>{
-  console.log('getData', preId, subId)
+export async function generateStaticParams() {
+
+  const result = subMenus?.[0]?.map((item, index) => {
+    const { text = '' } = item
+
+    if(text !== ''){
+      return {
+        id: '1-' + (index + 1),
+      }
+    }
+  })
+
+  result.push({
+    id: '1'
+  })
+
+  return result
+}
+
+const getData = async (preId, subId)=>{
+  console.log('stock_getData', preId, subId)
+  let result = ''
 
   let market = 'CN'
   let type = 'sh_sz'
@@ -34,16 +55,21 @@ const getData = async (preId, subId )=>{
   const url = `https://xueqiu.com/service/v5/stock/screener/quote/list?page=${page}&size=${size}&order=${order}&order_by=${orderby}&market=${market}&type=${type}&_=1644586651770` 
   console.log('url', url)
 
-  const res = await fetch(url, {
-    // next: { revalidate: 10 } 
-  })
-  
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
+  try {
+    const response = await fetch(url, {})
 
-  return res.json()
+    if (!response.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data')
+    }
+    
+    result = await response.json()
+    // console.log('getData_result', result)
+  } catch (error) {
+    console.error('stock_getData_error', error)
+  }   
+
+  return result
 }
 
 export default async function Page({ params }) {

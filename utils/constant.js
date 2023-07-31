@@ -66,7 +66,12 @@ const getSubMenuText = (index, subIndex)=>{
             subText = getSubMenu(index, subIndex)
             break
     }
-    return getMenuText(index) + ' - ' + subText
+
+    if(subText !== ''){
+        return getMenuText(index) + ' - ' + subText
+    } else {
+        return ''
+    }
 }
 
 const menusPri = []

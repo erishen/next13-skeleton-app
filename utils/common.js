@@ -8,7 +8,9 @@ export const handleMenuParams = (id = '')=>{
             preId = parseInt(idArr?.[0], 10)
             subId = parseInt(idArr?.[1], 10)
         } else {
-            preId = parseInt(id, 10)
+            if(id.indexOf('%') === -1){
+                preId = parseInt(id, 10)
+            }
         }
     }
 
