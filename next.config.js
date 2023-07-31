@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
+    // assetPrefix: 'https://erishen.github.io/next13-skeleton',
+    // basePath: '/next13-skeleton',
     compiler: {
         // Enables the styled-components SWC transform
         styledComponents: true,
