@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
+    basePath: '/next13-skeleton-app',
     compiler: {
         // Enables the styled-components SWC transform
         styledComponents: true,
