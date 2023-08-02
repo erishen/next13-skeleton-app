@@ -7,12 +7,12 @@ import Economy, { EconomyGold, EconomyGoldHead } from '@/components/Economy'
 import { subMenus } from '@/utils/constant'
 
 const rapidEconomyUrl = 'https://investing-financial-stocks.p.rapidapi.com/articles/economy?lang=en'
-const rapidKey = '281fd95da5mshb358a0378df34dcp1ad7cfjsn66ed289e84b7'
+const rapidKey = process.env.RAPID_KEY
 const rapidHost = 'investing-financial-stocks.p.rapidapi.com'
 
 const juheGoldUrl = 'http://web.juhe.cn/finance/gold/shgold' 
 const juheFutureUrl = 'http://web.juhe.cn/finance/gold/shfuture'
-const juheGoldKey = '3bf37029149d29e6fa696a5ec882bfc9'
+const juheGoldKey = process.env.JUHE_GOLD_KEY
 
 export const revalidate = 3600 // revalidate every hour
 
@@ -94,10 +94,14 @@ export default async function Page({ params }) {
 
   pageData = data
   if(isGoldFlag){
-    const firstObj = result?.[0]
-    Object.keys(firstObj).forEach((key, index)=>{
-      pageData.push(firstObj?.[key])
-    })
+    const firstObj = result?.[0] || {}
+    console.log('firstObj', firstObj)
+
+    if(firstObj){
+      Object.keys(firstObj).forEach((key, index)=>{
+        pageData.push(firstObj?.[key])
+      })
+    }
   }
 
   return (
