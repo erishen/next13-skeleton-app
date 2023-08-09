@@ -53,10 +53,10 @@ const getData = async (preId, subId)=>{
       }
       break
     case 2:
-      url = juheGoldUrl + '?v=1&key=' + juheGoldKey
+      url = `${juheGoldUrl}?v=1&key=${juheGoldKey}`
       break
     case 3:
-      url = juheFutureUrl + '?v=1&key=' + juheGoldKey
+      url = `${juheFutureUrl}?v=1&key=${juheGoldKey}`
       break
   }
   console.log('url', url)
