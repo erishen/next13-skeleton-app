@@ -13,3 +13,7 @@
 - https://investing-financial-stocks.p.rapidapi.com/articles/economy?lang=en
 - investing-financial-stocks.p.rapidapi.com
 - https://www.juhe.cn/docs
+
+
+# deploy
+- npm run deploy
